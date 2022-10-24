@@ -1,7 +1,7 @@
 steps:
   - label: ":bomb: Triggers"
     plugins:
-      - monebag/monorepo-diff:
+      - Anapaya/monorepo-diff:
           diff: "cat ./e2e/one-match-one-miss"
           log_level: "debug"
           watch:
@@ -22,7 +22,7 @@ steps:
 
   - label: ":bomb: Testing notifications"
     plugins:
-      - monebag/monorepo-diff#v2.5.1:
+      - Anapaya/monorepo-diff:
           diff: "cat ./e2e/multiple-paths"
           notify:
             - email: subash@monebag.com
@@ -66,7 +66,7 @@ steps:
 
   - label: ":bomb: Testing wait"
     plugins:
-      - monebag/monorepo-diff:
+      - Anapaya/monorepo-diff:
           diff: "cat ./e2e/multiple-paths"
           watch:
             - path:
@@ -78,7 +78,7 @@ steps:
 
   - label: ":bomb: Testing triggers and commands"
     plugins:
-      - monebag/monorepo-diff:
+      - Anapaya/monorepo-diff:
           diff: "cat ./e2e/commands-or-triggers"
           watch:
             - path: "user-service/"

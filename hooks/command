@@ -19,6 +19,10 @@ err() {
   exit 1
 }
 
+repo="https://github.com/Anapaya/monorepo-diff-buildkite-plugin"
+executable="monorepo-diff-buildkite-plugin-${kernel}-${arch}"
+test_mode="${BUILDKITE_PLUGIN_MONOREPO_DIFF_BUILDKITE_PLUGIN_TEST_MODE:-false}"
+
 get_architecture() {
   local _ostype="$(uname -s)"
   local _arch="$(uname -m)"

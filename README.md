@@ -18,7 +18,7 @@ If the version number is not provided then the most recent version of the plugin
 steps:
   - label: "Triggering pipelines"
     plugins:
-      - monebag/monorepo-diff#v2.5.9:
+      - Anapaya/monorepo-diff#v2.3.0-ana1:
           diff: "git diff --name-only HEAD~1"
           watch:
             - path: "bar-service/"
@@ -35,7 +35,7 @@ steps:
 steps:
   - label: "Triggering pipelines"
     plugins:
-      - monebag/monorepo-diff#v2.5.9:
+      - Anapaya/monorepo-diff#v2.3.0-ana1:
           diff: "git diff --name-only $(head -n 1 last_successful_build)"
           interpolation: false
           env:
@@ -100,9 +100,10 @@ steps:
 
 This will run the script provided to determine the folder changes.
 Depending on your use case, you may want to determine the point where the branch occurs
-https://stackoverflow.com/questions/1527234/finding-a-branch-point-with-git and perform a diff against the branch point.
+<https://stackoverflow.com/questions/1527234/finding-a-branch-point-with-git> and perform a diff against the branch point.
 
-#### Sample output:
+#### Sample output
+
 ```
 README.md
 lib/trigger.bash
@@ -111,7 +112,7 @@ tests/trigger.bats
 
 Default: `git diff --name-only HEAD~1`
 
-#### Examples:
+#### Examples
 
 `diff: ./diff-against-last-successful-build.sh`
 
@@ -153,7 +154,7 @@ Add `log_level` property to set the log level. Supported log levels are `debug` 
 steps:
   - label: "Triggering pipelines"
     plugins:
-      - monebag/monorepo-diff#v2.5.9:
+      - Anapaya/monorepo-diff#v2.3.0-ana1:
           diff: "git diff --name-only HEAD~1"
           log_level: "debug" # defaults to "info"
           watch:
@@ -194,7 +195,7 @@ Configuration supports 2 different step types.
 
 #### Trigger
 
-The configuration for the `trigger` step https://buildkite.com/docs/pipelines/trigger-step
+The configuration for the `trigger` step <https://buildkite.com/docs/pipelines/trigger-step>
 
 By default, it will pass the following values to the `build` attributes unless an alternative values are provided
 
@@ -229,7 +230,7 @@ hooks:
 steps:
   - label: "Triggering pipelines"
     plugins:
-      - monebag/monorepo-diff#v2.5.9:
+      - Anapaya/monorepo-diff#v2.3.0-ana1:
           diff: "git diff --name-only HEAD~1"
           watch:
             - path: app/cms/
