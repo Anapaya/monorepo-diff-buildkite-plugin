@@ -22,7 +22,7 @@ steps:
 
   - label: ":bomb: Testing notifications"
     plugins:
-      - monebag/monorepo-diff:
+      - monebag/monorepo-diff#v2.5.1:
           diff: "cat ./e2e/multiple-paths"
           notify:
             - email: subash@monebag.com
