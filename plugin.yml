@@ -19,7 +19,7 @@ configuration:
         path:
           type: [string, array]
           minimum: 1
-        negate:
+        negate_paths:
           type: boolean
         config:
           type: object

@@ -233,13 +233,13 @@ func TestPipelinesStepsToTrigger(t *testing.T) {
 		"negated empty": {
 			ChangedFiles: []string{
 				"watch-path-1/text.txt",
-				"watch-path-2/.gitignore",
+				"watch-path-1/.gitignore",
 			},
 			WatchConfigs: []WatchConfig{
 				{
-					Negate: true,
-					Paths:  []string{"watch-path-1"},
-					Step:   Step{Trigger: "service-1"},
+					NegatePaths: true,
+					Paths:       []string{"watch-path-1"},
+					Step:        Step{Trigger: "service-1"},
 				},
 			},
 			Expected: []Step{},
@@ -251,19 +251,40 @@ func TestPipelinesStepsToTrigger(t *testing.T) {
 			},
 			WatchConfigs: []WatchConfig{
 				{
-					Negate: true,
-					Paths:  []string{"watch-path-3"},
-					Step:   Step{Trigger: "service-1"},
+					NegatePaths: true,
+					Paths:       []string{"watch-path-3"},
+					Step:        Step{Trigger: "service-1"},
 				},
 				{
-					Negate: true,
-					Paths:  []string{"watch-path-4"},
-					Step:   Step{Trigger: "service-1"},
+					NegatePaths: true,
+					Paths:       []string{"watch-path-4"},
+					Step:        Step{Trigger: "service-1"},
 				},
 				{
-					Negate: true,
-					Paths:  []string{"watch-path-1"},
-					Step:   Step{Trigger: "service-2"},
+					NegatePaths: true,
+					Paths:       []string{"watch-path-1"},
+					Step:        Step{Trigger: "service-2"},
+				},
+			},
+			Expected: []Step{
+				{Trigger: "service-1"},
+			},
+		},
+		"negated match matches": {
+			ChangedFiles: []string{
+				"anapaya/.buildkite/pipeline.sh",
+				"anapaya/.buildkite/pipeline.yml",
+				"ansible/legacy/.buildkite/pipeline.yml",
+			},
+			WatchConfigs: []WatchConfig{
+				{
+					NegatePaths: true,
+					Paths: []string{
+						"ansible/legacy",
+						"ansible/prodspec",
+						"ansible/inventory",
+					},
+					Step: Step{Trigger: "service-1"},
 				},
 			},
 			Expected: []Step{
