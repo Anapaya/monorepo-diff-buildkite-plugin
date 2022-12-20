@@ -255,6 +255,16 @@ func TestPipelinesStepsToTrigger(t *testing.T) {
 					Paths:  []string{"watch-path-3"},
 					Step:   Step{Trigger: "service-1"},
 				},
+				{
+					Negate: true,
+					Paths:  []string{"watch-path-4"},
+					Step:   Step{Trigger: "service-1"},
+				},
+				{
+					Negate: true,
+					Paths:  []string{"watch-path-1"},
+					Step:   Step{Trigger: "service-2"},
+				},
 			},
 			Expected: []Step{
 				{Trigger: "service-1"},
