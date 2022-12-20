@@ -230,45 +230,22 @@ func TestPipelinesStepsToTrigger(t *testing.T) {
 				{Trigger: "txt"},
 			},
 		},
-		"negated empty": {
+		"require all": {
 			ChangedFiles: []string{
 				"watch-path-1/text.txt",
 				"watch-path-1/.gitignore",
 			},
 			WatchConfigs: []WatchConfig{
 				{
-					NegatePaths: true,
-					Paths:       []string{"watch-path-1"},
-					Step:        Step{Trigger: "service-1"},
+					RequireAll: true,
+					Paths: []string{
+						"watch-path-1",
+						"!watch-path-1/.gitignore",
+					},
+					Step: Step{Trigger: "service-1"},
 				},
 			},
 			Expected: []Step{},
-		},
-		"negated match": {
-			ChangedFiles: []string{
-				"watch-path-1/text.txt",
-				"watch-path-2/.gitignore",
-			},
-			WatchConfigs: []WatchConfig{
-				{
-					NegatePaths: true,
-					Paths:       []string{"watch-path-3"},
-					Step:        Step{Trigger: "service-1"},
-				},
-				{
-					NegatePaths: true,
-					Paths:       []string{"watch-path-4"},
-					Step:        Step{Trigger: "service-1"},
-				},
-				{
-					NegatePaths: true,
-					Paths:       []string{"watch-path-1"},
-					Step:        Step{Trigger: "service-2"},
-				},
-			},
-			Expected: []Step{
-				{Trigger: "service-1"},
-			},
 		},
 		"negated match matches": {
 			ChangedFiles: []string{
@@ -278,11 +255,11 @@ func TestPipelinesStepsToTrigger(t *testing.T) {
 			},
 			WatchConfigs: []WatchConfig{
 				{
-					NegatePaths: true,
+					RequireAll: true,
 					Paths: []string{
-						"ansible/legacy",
-						"ansible/prodspec",
-						"ansible/inventory",
+						"!ansible/legacy",
+						"!ansible/prodspec",
+						"!ansible/inventory",
 					},
 					Step: Step{Trigger: "service-1"},
 				},

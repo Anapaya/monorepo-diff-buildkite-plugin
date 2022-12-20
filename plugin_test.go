@@ -69,7 +69,7 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 							"message": "some message"
 						}
 					},
-					"negate_paths": true
+					"require_all": true
 				},
 				{
 					"path": "watch-path-1",
@@ -144,8 +144,8 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 		},
 		Watch: []WatchConfig{
 			{
-				Paths:       []string{"watch-path-1"},
-				NegatePaths: true,
+				Paths:      []string{"watch-path-1"},
+				RequireAll: true,
 				Step: Step{
 					Trigger: "service-2",
 					Build: Build{

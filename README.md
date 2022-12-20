@@ -163,7 +163,10 @@ A list of paths can be provided to trigger the desired pipeline. Changes in any 
 
 A `path` can also be a glob pattern. For example specify `path: "**/*.md"` to match all markdown files.
 
-Use `negatePaths` to execute a step when all provided paths do not match any change.
+If `path` starts with `!` it will trigger the pipeline if the change if will does not match the path.
+
+Use `RequireAll` to trigger the pipeline only if any change matches all paths.
+By default the pipeline will be triggered if any change matches any paths.
 
 ### `config`
 
