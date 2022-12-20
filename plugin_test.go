@@ -80,7 +80,8 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 								"foo": "bar"
 							}
 						}
-					}
+					},
+					"require_all": true
 				},
 				{
 					"path": "watch-path-1",
@@ -173,7 +174,8 @@ func TestPluginShouldUnmarshallCorrectly(t *testing.T) {
 		},
 		Watch: []WatchConfig{
 			{
-				Paths: []string{"watch-path-1"},
+				Paths:      []string{"watch-path-1"},
+				RequireAll: true,
 				Step: Step{
 					Trigger: "service-2",
 					Build: Build{
