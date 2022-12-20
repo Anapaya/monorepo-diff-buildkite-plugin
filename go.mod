@@ -1,4 +1,4 @@
-module github.com/monebag/monorepo-diff-buildkite-plugin
+module github.com/Anapaya/monorepo-diff-buildkite-plugin
 
 go 1.17
 

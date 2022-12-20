@@ -19,6 +19,8 @@ configuration:
         path:
           type: [string, array]
           minimum: 1
+        negate:
+          type: boolean
         config:
           type: object
           properties:
