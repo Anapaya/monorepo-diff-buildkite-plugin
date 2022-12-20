@@ -163,6 +163,8 @@ A list of paths can be provided to trigger the desired pipeline. Changes in any 
 
 A `path` can also be a glob pattern. For example specify `path: "**/*.md"` to match all markdown files.
 
+Use `negate` to negate the matching logic and add a step when none of the provided paths match.
+
 ### `config`
 
 Configuration supports 2 different step types.
