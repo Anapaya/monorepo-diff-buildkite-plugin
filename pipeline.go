@@ -88,25 +88,36 @@ func stepsToTrigger(files []string, watch []WatchConfig) ([]Step, error) {
 	steps := []Step{}
 
 	for _, w := range watch {
-		for _, p := range w.Paths {
-			for _, f := range files {
+		for _, f := range files {
+			anyMatch := false
+			allMatch := true
+			for _, p := range w.Paths {
 				match, err := matchPath(p, f)
 				if err != nil {
 					return nil, err
 				}
-				if match {
-					steps = append(steps, w.Step)
-					break
-				}
+				anyMatch = anyMatch || match
+				allMatch = allMatch && match
+			}
+			if (w.RequireAll && allMatch) || (!w.RequireAll && anyMatch) {
+				steps = append(steps, w.Step)
+				continue
 			}
 		}
 	}
-
 	return dedupSteps(steps), nil
 }
 
 // matchPath checks if the file f matches the path p.
 func matchPath(p string, f string) (bool, error) {
+	// Invert the match if the path starts with a `!`
+	if strings.HasPrefix(p, "!") {
+		match, err := matchPath(p[1:], f)
+		if err != nil {
+			return false, err
+		}
+		return !match, nil
+	}
 	// If the path contains a glob, the `doublestar.Match`
 	// method is used to determine the match,
 	// otherwise `strings.HasPrefix` is used.

@@ -230,6 +230,73 @@ func TestPipelinesStepsToTrigger(t *testing.T) {
 				{Trigger: "txt"},
 			},
 		},
+		"require all not inverted": {
+			ChangedFiles: []string{
+				"package/docs/other.txt",
+			},
+			WatchConfigs: []WatchConfig{
+				{
+					RequireAll: true,
+					Paths:      []string{"package", "package/docs"},
+					Step:       Step{Trigger: "txt"},
+				},
+			},
+			Expected: []Step{
+				{Trigger: "txt"},
+			},
+		},
+		"inverted": {
+			ChangedFiles: []string{
+				"package/docs/other.txt",
+			},
+			WatchConfigs: []WatchConfig{
+				{
+					Paths: []string{"!package"},
+					Step:  Step{Trigger: "txt"},
+				},
+			},
+			Expected: []Step{},
+		},
+		"require all": {
+			ChangedFiles: []string{
+				"watch-path-1/text.txt",
+				"watch-path-1/.gitignore",
+			},
+			WatchConfigs: []WatchConfig{
+				{
+					RequireAll: true,
+					Paths: []string{
+						"watch-path-1",
+						"!watch-path-1/.gitignore",
+					},
+					Step: Step{Trigger: "service-1"},
+				},
+			},
+			Expected: []Step{
+				{Trigger: "service-1"},
+			},
+		},
+		"negated match matches": {
+			ChangedFiles: []string{
+				"anapaya/.buildkite/pipeline.sh",
+				"anapaya/.buildkite/pipeline.yml",
+				"ansible/legacy/.buildkite/pipeline.yml",
+			},
+			WatchConfigs: []WatchConfig{
+				{
+					RequireAll: true,
+					Paths: []string{
+						"!ansible/legacy",
+						"!ansible/prodspec",
+						"!ansible/inventory",
+					},
+					Step: Step{Trigger: "service-1"},
+				},
+			},
+			Expected: []Step{
+				{Trigger: "service-1"},
+			},
+		},
 	}
 	for name, tc := range testCases {
 		t.Run(name, func(t *testing.T) {
