@@ -58,7 +58,7 @@ EOM
   export BUILDKITE_COMMIT="commit-hash"
 
   export BUILDKITE_PLUGINS='[{
-    "github.com/monebag/monorepo-diff-buildkite-plugin": {
+    "github.com/Anapaya/monorepo-diff-buildkite-plugin": {
       "diff":"echo foo-service/ \nuser-service",
       "log_level": "debug",
       "notify": [

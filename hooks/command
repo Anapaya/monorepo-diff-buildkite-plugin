@@ -19,10 +19,6 @@ err() {
   exit 1
 }
 
-repo="https://github.com/Anapaya/monorepo-diff-buildkite-plugin"
-executable="monorepo-diff-buildkite-plugin-${kernel}-${arch}"
-test_mode="${BUILDKITE_PLUGIN_MONOREPO_DIFF_BUILDKITE_PLUGIN_TEST_MODE:-false}"
-
 get_architecture() {
   local _ostype="$(uname -s)"
   local _arch="$(uname -m)"
@@ -79,7 +75,7 @@ download_binary_and_run() {
   get_architecture || return 1
   local _arch="$RETVAL"
   local _executable="monorepo-diff-buildkite-plugin"
-  local _repo="https://github.com/monebag/monorepo-diff-buildkite-plugin"
+  local _repo="https://github.com/Anapaya/monorepo-diff-buildkite-plugin"
 
   get_version || return 1
   local _version="$RETVAL"

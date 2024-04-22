@@ -68,6 +68,8 @@ configuration:
               type: boolean
             label:
               type: string
+            timeout_in_minutes:
+              type: integer
             build:
               type: object
               properties:
@@ -101,5 +103,4 @@ configuration:
           type: string
   required:
     - watch
-
 # yaml-language-server: $schema=https://raw.githubusercontent.com/buildkite-plugins/buildkite-plugin-linter/master/lib/plugin-yaml-schema.yml
