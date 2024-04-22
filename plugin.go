@@ -82,6 +82,7 @@ type Step struct {
 	SoftFail  interface{}              `json:"soft_fail" yaml:"soft_fail,omitempty"`
 	RawNotify []map[string]interface{} `json:"notify" yaml:",omitempty"`
 	Notify    []StepNotify             `yaml:"notify,omitempty"`
+	Timeout   int                      `yaml:"timeout_in_minutes,omitempty"`
 }
 
 // Agent is Buildkite agent definition
