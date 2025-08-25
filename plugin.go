@@ -71,6 +71,7 @@ type Step struct {
 	Group     string                   `yaml:"group,omitempty"`
 	Trigger   string                   `yaml:"trigger,omitempty"`
 	Label     string                   `yaml:"label,omitempty"`
+	Key       string                   `yaml:"key,omitempty"`
 	Build     Build                    `yaml:"build,omitempty"`
 	Command   interface{}              `yaml:"command,omitempty"`
 	Commands  interface{}              `yaml:"commands,omitempty"`
