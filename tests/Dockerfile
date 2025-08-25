@@ -1,10 +1,10 @@
-FROM goreleaser/goreleaser:v1.13.1-amd64 as go
+FROM goreleaser/goreleaser:v2.11.2-amd64 as go
 
 WORKDIR /plugin
 
 COPY . .
 
-RUN goreleaser build --rm-dist --skip-validate --config .goreleaser-test.yml
+RUN goreleaser build --clean --skip=validate --config .goreleaser-test.yml
 
 FROM buildkite/plugin-tester:v3.0.1
 
