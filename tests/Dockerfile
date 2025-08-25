@@ -4,7 +4,7 @@ WORKDIR /plugin
 
 COPY . .
 
-RUN goreleaser build --rm-dist --skip-validate --config .goreleaser-test.yml
+RUN goreleaser build --clean --skip-validate --config .goreleaser-test.yml
 
 FROM buildkite/plugin-tester:v3.0.1
 
