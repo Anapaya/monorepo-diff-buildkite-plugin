@@ -79,6 +79,7 @@ type Step struct {
 	Artifacts []string                 `yaml:"artifacts,omitempty"`
 	RawEnv    interface{}              `json:"env" yaml:",omitempty"`
 	Retry     interface{}              `yaml:"retry,omitempty"`
+	If        interface{}              `yaml:"if,omitempty"`
 	Env       map[string]string        `yaml:"env,omitempty"`
 	Async     bool                     `yaml:"async,omitempty"`
 	SoftFail  interface{}              `json:"soft_fail" yaml:"soft_fail,omitempty"`
