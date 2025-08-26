@@ -68,24 +68,25 @@ type StepNotify struct {
 
 // Step is buildkite pipeline definition
 type Step struct {
-	Group     string                   `yaml:"group,omitempty"`
-	Trigger   string                   `yaml:"trigger,omitempty"`
-	Label     string                   `yaml:"label,omitempty"`
-	Key       string                   `yaml:"key,omitempty"`
-	Build     Build                    `yaml:"build,omitempty"`
-	Command   interface{}              `yaml:"command,omitempty"`
-	Commands  interface{}              `yaml:"commands,omitempty"`
-	Agents    Agent                    `yaml:"agents,omitempty"`
-	Artifacts []string                 `yaml:"artifacts,omitempty"`
-	RawEnv    interface{}              `json:"env" yaml:",omitempty"`
-	Retry     interface{}              `yaml:"retry,omitempty"`
-	If        interface{}              `yaml:"if,omitempty"`
-	Env       map[string]string        `yaml:"env,omitempty"`
-	Async     bool                     `yaml:"async,omitempty"`
-	SoftFail  interface{}              `json:"soft_fail" yaml:"soft_fail,omitempty"`
-	RawNotify []map[string]interface{} `json:"notify" yaml:",omitempty"`
-	Notify    []StepNotify             `yaml:"notify,omitempty"`
-	Timeout   int                      `yaml:"timeout_in_minutes,omitempty"`
+	Group         string                   `yaml:"group,omitempty"`
+	Trigger       string                   `yaml:"trigger,omitempty"`
+	Label         string                   `yaml:"label,omitempty"`
+	Key           string                   `yaml:"key,omitempty"`
+	Build         Build                    `yaml:"build,omitempty"`
+	Command       interface{}              `yaml:"command,omitempty"`
+	Commands      interface{}              `yaml:"commands,omitempty"`
+	Agents        Agent                    `yaml:"agents,omitempty"`
+	Artifacts     []string                 `yaml:"artifacts,omitempty"`
+	ArtifactPaths any                      `yaml:"artifact_paths,omitempty"`
+	RawEnv        interface{}              `json:"env" yaml:",omitempty"`
+	Retry         interface{}              `yaml:"retry,omitempty"`
+	If            interface{}              `yaml:"if,omitempty"`
+	Env           map[string]string        `yaml:"env,omitempty"`
+	Async         bool                     `yaml:"async,omitempty"`
+	SoftFail      interface{}              `json:"soft_fail" yaml:"soft_fail,omitempty"`
+	RawNotify     []map[string]interface{} `json:"notify" yaml:",omitempty"`
+	Notify        []StepNotify             `yaml:"notify,omitempty"`
+	Timeout       int                      `yaml:"timeout_in_minutes,omitempty"`
 }
 
 // Agent is Buildkite agent definition
